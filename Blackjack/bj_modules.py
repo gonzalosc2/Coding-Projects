@@ -189,17 +189,21 @@ def show_all(player,dealer):
     print("Player's hand:")
     print(*player.cards, sep = ' / ')
 
-    
+def player_busts(player,dealer,chips):
+    print('Player busts, dealer collects ' + chips.bet)
+    chips.lose_bet()
 
+def player_wins(player,dealer,chips):
+    print('Player wins ' + chips.bet)
+    chips.win_bet()
 
+def dealer_busts(player,dealer,chips):
+    print('Dealer busts, player wins ' + chips.bet)
+    chips.win_bet()
 
+def dealer_wins(player,dealer,chips):
+    print('Dealer wins ' chips.bet)
+    chips.lose_bet()
 
-
-# deck = Deck()
-# dealer = Hand()
-# player = Hand()
-#
-# dealer.add_card(deck.deal())
-# player.add_card(deck.deal())
-#
-# show_all(player,dealer)
+def push(player,dealer,chips):
+    print('There is a Push (Tie). Nobody wins.')
