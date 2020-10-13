@@ -12,7 +12,7 @@
 #cd ..
 #cd Coding-Projects/Blackjack
 
-from bj_modules import *
+bj_modules import *
 
 def main():
     global playing
