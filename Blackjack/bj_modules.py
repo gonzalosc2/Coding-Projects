@@ -123,13 +123,12 @@ def take_bet(chips):
 
     while True:
         try:
-            chips.bet = int(input('How much do you want to bet?: '))
+            chips.bet = int(input('\nHow many chips would you like to bet?: '))
 
             if chips.total < chips.bet:
                 raise BalanceError('Bet amount is larger than the available balance.')
 
-            return bet
-
+            break
         except ValueError:
             print('The value entered is wrong. Please use interger values.')
 
@@ -153,29 +152,32 @@ def hit_or_stand(deck,hand):
     hit_values = ('H','HIT')
     stand_values = ('S','STAND')
 
+    print(playing)
     while True:
         try:
-            answer = input('Do you want to HIT(H) or STAND(S)?: ')
-            if not answer.upper() in hit_values and not answer.upper() in stand_values:
-                raise 'Invalid input.'
+            answer = input('\nDo you want to (H)IT or (S)TAND?: ')
 
-            if answer.upper() == 'H' or 'HIT':
+            if answer.upper() in hit_values:
                 hit(deck,hand)
-            else:
+
+            elif answer.upper() in stand_values:
                 print("Player stands. Dealer's turn begins.")
                 playing = False
 
-            break
+            elif not answer.upper() in hit_values and not answer.upper() in stand_values:
+                raise 'Invalid input.'
+
+            break    
+
         except:
-            print('Invalid answer. Please answer HIT or STAND.')
+            print('Invalid answer. Please answer (H)IT or (S)TAND.')
 
 def show_some(player,dealer):
     "Show the cards on the board, hidding the first card on the dealer's hand"
 
     print("Dealer's hand:")
-    print("\n<Covered Card>", str(dealer.cards[1]), sep = ' / ')
+    print("<Covered Card>", str(dealer.cards[1]), sep = ' / ')
     print('\n')
-
     print("Player's hand:")
     print(*player.cards, sep = ' / ')
 
@@ -185,25 +187,24 @@ def show_all(player,dealer):
     print("Dealer's hand:")
     print(*dealer.cards, sep = ' / ')
     print('\n')
-
     print("Player's hand:")
     print(*player.cards, sep = ' / ')
 
 def player_busts(player,dealer,chips):
-    print('Player busts, dealer collects ' + chips.bet)
+    print('\nPlayer busts, dealer collects ' + str(chips.bet))
     chips.lose_bet()
 
 def player_wins(player,dealer,chips):
-    print('Player wins ' + chips.bet)
+    print('\nPlayer wins! ' + str(chips.bet))
     chips.win_bet()
 
 def dealer_busts(player,dealer,chips):
-    print('Dealer busts, player wins ' + chips.bet)
+    print('\nDealer busts, player wins! ' + str(chips.bet))
     chips.win_bet()
 
 def dealer_wins(player,dealer,chips):
-    print('Dealer wins ' chips.bet)
+    print('\nDealer wins ' + str(chips.bet))
     chips.lose_bet()
 
-def push(player,dealer,chips):
-    print('There is a Push (Tie). Nobody wins.')
+def push(player,dealer):
+    print('\nThere is a Push (Tie). Nobody wins.')
