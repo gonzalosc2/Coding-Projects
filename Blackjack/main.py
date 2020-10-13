@@ -4,7 +4,8 @@
 # purpose: milestone project 2 - create a Blackjack game (w/o splitting and
 #          doubling down)
 # description: Main script
-# other: N/A
+# comment: It runs on a Jupyter Notebook, but does not run on Python IDLE.
+#          PENDING TO CHECK FOR THE REASON!
 ####################################
 
 #recall: to set working directory
