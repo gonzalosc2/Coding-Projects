@@ -68,6 +68,7 @@ def merging_process(files):
     df['Nombre_Completo'] = df['Nombres'].str.title().str.strip() + ' ' + \
                             df['Apellido Paterno'].str.title().str.strip() + ' ' + \
                             df['Apellido Materno'].str.title().str.strip()
+    #df['Nombre_Completo'].apply(str.strip)                        
     df.sort_values(by = 'Nombre_Completo', inplace = True)                        
     for index, row in df.iterrows():
         with MailMerge(temp_f) as f:
@@ -82,8 +83,11 @@ def docx_to_pdf():
     
     convert('dp_Word/','dp_PDF/')
 
-def email_sending(body,sender_email,sender_pass,receiver_email,filename):   
-    
+def email_config(body,sender_email,sender_pass,receiver_email,filename):   
+    ""
+    "   INPUT: "
+    "   OUTPUT: "
+
     msg = MIMEMultipart()
     msg['Subject'] = 'Diploma - Congreso de tragrasables en Miami'
     msg['From'] = sender_email
@@ -106,12 +110,41 @@ def email_sending(body,sender_email,sender_pass,receiver_email,filename):
     except Exception as e:
         print(e!)
 
-# %%
-files = ['broma.docx','broma.csv']
-merging_process(files)
+def email_sending():
+    ""
+    "   INPUT: "
+    "   OUTPUT: "
+       
+    pass
 
-# %%
-docx_to_pdf()
+#     df = pd.read_csv('broma.csv')
+#     df['Apellido Materno'].fillna(value = '', inplace = True)  # essential, otherwise it will drop names
+#     df['Nombre_Completo'] = df['Nombres'].str.title().str.strip() + ' ' + \
+#                             df['Apellido Paterno'].str.title().str.strip() + ' ' + \
+#                             df['Apellido Materno'].str.title().str.strip()
+#     sender_email = getpass("\nEnter sender's email here: ")
+#     sender_pass = getpass("\nEnter sender apps' pass here: ")  # app password is required for gmail server
 
+#     for index,row in df.iterrows():
+#         receiver_email = row['Correo']    
+#         receiver_name = row['Nombre_Completo']
+#         email_config('Estimada/o Participante: \nAdjunto a usted certificado de participación.\n',sender_email,sender_pass,receiver_email,receiver_name)
 # %%
-# 
+def main():
+    ""
+    "   INPUT: "
+    "   OUTPUT: "
+
+    # dwdw
+    merging_process(files)
+
+    # dwdw
+    docx_to_pdf()
+
+    # dwdw
+    email_sending()
+
+main()
+
+
+
